@@ -26,14 +26,14 @@ class ContaCorrente:
         return horario_brasil.strftime('%d/%m/%Y %H:%M:%S')
 
     def __init__(self, nome, cpf, ag, cc):
-        self._nome = nome
-        self._cpf = cpf
+        self.nome = nome
+        self.cpf = cpf
         self._saldo = 0
         self._limite = None
         self._transacoes = []
-        self._agencia = ag
-        self._conta = cc
-        self.cartoes = []
+        self.agencia = ag
+        self.conta = cc
+        self._cartoes = []
 
     def consultar_saldo(self):
         # Faz a consulta do saldo atual da conta
@@ -89,9 +89,20 @@ class CartaoCredito:
         self.validade = f'{CartaoCredito._data_hora().month}/{CartaoCredito._data_hora().year + 4}'
         self.cod_seguranca = f'{randint(0,9)}{randint(0,9)}{randint(0,9)}'
         self.limite = 1000
+        self._senha = '1234'
         self.conta_corrente = conta_corrente
-        conta_corrente.cartoes.append(self)
+        conta_corrente._cartoes.append(self)
 
+    @property
+    def senha(self):
+        return self._senha
+
+    @senha.setter
+    def senha(self, valor):
+        if len(valor) == 4 and valor.isnumeric():
+            self._senha = valor
+        else:
+            print('Nova senha INVÁLIDA')
 
 # PROGRAMA
 
@@ -100,10 +111,10 @@ print('='* 10 + ' CONTA ' + '='* 10)
 conta_carlos = ContaCorrente('Carlos', '999.999.999-88', 1234, 29337)
 
 print(f'''
-Nome: {conta_carlos._nome}
-CPF: {conta_carlos._cpf}
-Agência: {conta_carlos._agencia}
-Conta: {conta_carlos._conta}
+Nome: {conta_carlos.nome}
+CPF: {conta_carlos.cpf}
+Agência: {conta_carlos.agencia}
+Conta: {conta_carlos.conta}
 ''')
 
 # Cartão
@@ -115,5 +126,8 @@ Titular: {cartao_carlos.titular}
 Número do cartão : {cartao_carlos.numero}
 Validade: {cartao_carlos.validade}
 Código de segurança: {cartao_carlos.cod_seguranca}
-Conta do cartão: {cartao_carlos.conta_corrente._agencia}-{cartao_carlos.conta_corrente._conta}
+Conta do cartão: {cartao_carlos.conta_corrente.agencia}-{cartao_carlos.conta_corrente.conta}
 ''')
+
+cartao_carlos.senha = '1235'
+print(cartao_carlos.senha)
