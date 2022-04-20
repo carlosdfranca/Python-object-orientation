@@ -14,6 +14,7 @@ class ContaCorrente:
             saldo (flt): saldo disponível na conta do ciente
             limite  (flt): limite de cheque especial do cliente
             transacoes (list): histórico de transações da conta do cliente
+            cartoes (list): cartoes de credito usados na conta do clinte
     """
     
     
@@ -30,7 +31,8 @@ class ContaCorrente:
         self._limite = None
         self._transacoes = []
         self._agencia = ag
-        self._conta = cc 
+        self._conta = cc
+        self._cartoes = []
 
     def consultar_saldo(self):
         # Faz a consulta do saldo atual da conta
@@ -72,6 +74,17 @@ class ContaCorrente:
         conta_destino.saldo += valor
         conta_destino.transacoes.append((valor, conta_destino.saldo, ContaCorrente._data_hora()))
 
+class CartaoCredito:
+    
+    def __init__(self, titular, conta_corrente):
+        self.numero = 123456
+        self.titular = titular
+        self.validade = None
+        self.cod_seguranca = None
+        self.limite = None
+        self.conta_corrente = conta_corrente
+        conta_corrente._cartoes.append(self)
+
 
 # PROGRAMA
 conta_carlos = ContaCorrente('Carlos', '999.999.999-88', 1234, 29337)
@@ -83,3 +96,6 @@ Agência: {conta_carlos._agencia}
 Conta: {conta_carlos._conta}
 ''')
 
+cartao_carlos = CartaoCredito('Fulano Ciclano de Beutrano', conta_carlos)
+
+print(cartao_carlos.titular , '|' , cartao_carlos.conta_corrente._conta)
