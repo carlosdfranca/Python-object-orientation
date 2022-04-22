@@ -1,3 +1,6 @@
+from random import randint
+
+
 class Agencia:
     
     def __init__(self, telefone, cnpj, numero):
@@ -34,10 +37,16 @@ class AgenciaVirtual(Agencia):
     
 
 class AgenciaComum(Agencia):
-    pass
+    
+    def __init__(self, telefone, cnpj):
+        super().__init__(telefone, cnpj, numero = randint(1001, 9999))
+        self.caixa = 1000000
 
 class AgenciaPremium(Agencia):
-    pass
+    
+    def __init__(self, telefone, cnpj):
+        super().__init__(telefone, cnpj, numero = randint(1001, 9999))
+        self.caixa = 10000000
 
 
 # Programa
@@ -49,4 +58,19 @@ agencia1 = Agencia(1144445555, 17128632000138, 1256)
 agencia_virtual1 = AgenciaVirtual('www.meusitevirtual.com.br', 1199998888, 97734477000132)
 
 # Colocando um valor de caixa para a agencia_virtual1m e verificando 
+print('-'*10 + 'AGENCIA VIRTUAL' + '='* 10 )
 agencia_virtual1.verificar_caixa()
+print(agencia_virtual1.site)
+
+
+# Criando exemplo de Agencia Comum
+print('-'*10 + 'AGENCIA COMUM' + '='* 10)
+agencia_comum = AgenciaComum(1177776666, 87203559000105)
+agencia_comum.verificar_caixa()
+print(agencia_comum.numero)
+
+# Criando ecemplo de Agencia Premium
+print('-'*10 + 'AGENCIA PREMIUM' + '='* 10)
+agencia_premium = AgenciaPremium(1177776666, 87203559000105)
+agencia_premium.verificar_caixa()
+print(agencia_premium.numero)
