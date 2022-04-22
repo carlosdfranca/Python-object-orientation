@@ -26,7 +26,12 @@ class Agencia:
         self.clientes.append((nome, cpf, patrimonio))
 
 class AgenciaVirtual(Agencia):
-    pass
+    
+    def __init__(self, site, telefone, cnpj):
+        super().__init__(telefone, cnpj, 1000)
+        self.site = site
+        self.caixa = 1000000
+    
 
 class AgenciaComum(Agencia):
     pass
@@ -41,15 +46,7 @@ class AgenciaPremium(Agencia):
 agencia1 = Agencia(1144445555, 17128632000138, 1256)
 
 # crinado exemplo de agencia virtual
-agencia_virtual1 = AgenciaVirtual(1199998888, 12416954000169, 9876)
+agencia_virtual1 = AgenciaVirtual('www.meusitevirtual.com.br', 1199998888, 97734477000132)
 
 # Colocando um valor de caixa para a agencia_virtual1m e verificando 
-agencia_virtual1.caixa = 15000
 agencia_virtual1.verificar_caixa()
-
-# Criando Agencia Premium
-agencia_premium1 = AgenciaPremium(1199997777, 67366415000154, 7654)
-
-# Colocando um valor de caixa para a agencia_premium1 e verificando
-agencia_premium1.caixa = 100000000
-agencia_premium1.verificar_caixa()
