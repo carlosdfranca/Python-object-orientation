@@ -25,21 +25,31 @@ class Agencia:
     def adicionar_cliente(self, nome, cpf, patrimonio):
         self.clientes.append((nome, cpf, patrimonio))
 
+class AgenciaVirtual(Agencia):
+    pass
+
+class AgenciaComum(Agencia):
+    pass
+
+class AgenciaPremium(Agencia):
+    pass
+
 
 # Programa
 
 # Criando exemplo de agencia
-agencia1 = Agencia(1144445555, 9809809809879, 1256)
+agencia1 = Agencia(1144445555, 17128632000138, 1256)
 
-# Alterando o valor do dinheiro em caixa
-agencia1.caixa = 1000000
+# crinado exemplo de agencia virtual
+agencia_virtual1 = AgenciaVirtual(1199998888, 12416954000169, 9876)
 
-# Verificando o dinheiro em caixa
-agencia1.verificar_caixa()
+# Colocando um valor de caixa para a agencia_virtual1m e verificando 
+agencia_virtual1.caixa = 15000
+agencia_virtual1.verificar_caixa()
 
-# Emprestando dinheiro
-agencia1.emprestar_dinheiro(1500, 12345678945, 0.10)
+# Criando Agencia Premium
+agencia_premium1 = AgenciaPremium(1199997777, 67366415000154, 7654)
 
-# Adicionancdo um cliente
-agencia1.adicionar_cliente('Carlos', 12345678945, 10000)
-print(agencia1.clientes)
+# Colocando um valor de caixa para a agencia_premium1 e verificando
+agencia_premium1.caixa = 100000000
+agencia_premium1.verificar_caixa()
