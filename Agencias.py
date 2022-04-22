@@ -34,6 +34,23 @@ class AgenciaVirtual(Agencia):
         super().__init__(telefone, cnpj, 1000)
         self.site = site
         self.caixa = 1000000
+        self.caixa_paypal = 0
+        
+    def depositar_paypal(self, valor):
+        if valor <= self.caixa:
+            self.caixa -= valor
+            self.caixa_paypal += valor
+            print(f'Depósito realizado. \nCaixa atual: R${self.caixa:,.2f} \nCaixa atual do Paypal: R${self.caixa_paypal:,.2f}')
+        else:
+            print('Ops... Não tem dinheiro em caixa suficiente para o depósito. \nCaixa atual: R${:,.2f}'.format(self.caixa))
+    
+    def sacar_paypal(self, valor):
+        if valor <= self.caixa_paypal:
+            self.caixa_paypal -= valor
+            self.caixa += valor
+            print(f'Saque realizado. \nCaixa atual: R${self.caixa:,.2f} \nCaixa atual do Paypal: R${self.caixa_paypal:,.2f}')
+        else:
+            print('Ops... Não tem dinheiro no Paypal suficiente para o saque. \nCaixa atual do Paypal: R${:,.2f}'.format(self.caixa_paypal))
     
 
 class AgenciaComum(Agencia):
@@ -60,17 +77,17 @@ agencia_virtual1 = AgenciaVirtual('www.meusitevirtual.com.br', 1199998888, 97734
 # Colocando um valor de caixa para a agencia_virtual1m e verificando 
 print('-'*10 + 'AGENCIA VIRTUAL' + '='* 10 )
 agencia_virtual1.verificar_caixa()
-print(agencia_virtual1.site)
+
+# Depositando para o Paypal
+agencia_virtual1.depositar_paypal(50000)
+
+# Sacando do Paypal
+agencia_virtual1.sacar_paypal(25000)
 
 
 # Criando exemplo de Agencia Comum
-print('-'*10 + 'AGENCIA COMUM' + '='* 10)
 agencia_comum = AgenciaComum(1177776666, 87203559000105)
-agencia_comum.verificar_caixa()
-print(agencia_comum.numero)
+
 
 # Criando ecemplo de Agencia Premium
-print('-'*10 + 'AGENCIA PREMIUM' + '='* 10)
 agencia_premium = AgenciaPremium(1177776666, 87203559000105)
-agencia_premium.verificar_caixa()
-print(agencia_premium.numero)
