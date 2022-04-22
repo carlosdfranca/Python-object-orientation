@@ -73,30 +73,30 @@ class AgenciaPremium(Agencia):
             print('O cliente não tem o patrimônio mínimo para entrar na Agencia Premium')
 
 
-# Programa
 
-# Criando exemplo de agencia
-agencia1 = Agencia(1144445555, 17128632000138, 1256)
+if __name__ == '__main__':
+    # Criando exemplo de agencia
+    agencia1 = Agencia(1144445555, 17128632000138, 1256)
 
-# Crinado exemplo de agencia virtual
-agencia_virtual1 = AgenciaVirtual('www.meusitevirtual.com.br', 1199998888, 97734477000132)
+    # Crinado exemplo de agencia virtual
+    agencia_virtual1 = AgenciaVirtual('www.meusitevirtual.com.br', 1199998888, 97734477000132)
 
-# Colocando um valor de caixa para a agencia_virtual1m e verificando 
-print('-'*10 + 'AGENCIA VIRTUAL' + '='* 10 )
-agencia_virtual1.verificar_caixa()
+    # Colocando um valor de caixa para a agencia_virtual1m e verificando 
+    print('-'*10 + 'AGENCIA VIRTUAL' + '='* 10 )
+    agencia_virtual1.verificar_caixa()
 
-# Depositando para o Paypal
-agencia_virtual1.depositar_paypal(50000)
+    # Depositando para o Paypal
+    agencia_virtual1.depositar_paypal(50000)
 
-# Sacando do Paypal
-agencia_virtual1.sacar_paypal(25000)
-
-
-# Criando exemplo de Agencia Comum
-agencia_comum = AgenciaComum(1177776666, 87203559000105)
+    # Sacando do Paypal
+    agencia_virtual1.sacar_paypal(25000)
 
 
-# Criando ecemplo de Agencia Premium
-agencia_premium = AgenciaPremium(1177776666, 87203559000105)
-agencia_premium.adicionar_cliente('Carlos', 12345678945, 500000000)
-print(agencia_premium.clientes)
+    # Criando exemplo de Agencia Comum
+    agencia_comum = AgenciaComum(1177776666, 87203559000105)
+
+
+    # Criando ecemplo de Agencia Premium
+    agencia_premium = AgenciaPremium(1177776666, 87203559000105)
+    agencia_premium.adicionar_cliente('Carlos', 12345678945, 500000000)
+    print(agencia_premium.clientes)
